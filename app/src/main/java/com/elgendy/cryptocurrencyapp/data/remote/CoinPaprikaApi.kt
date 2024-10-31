@@ -1,5 +1,6 @@
 package com.elgendy.cryptocurrencyapp.data.remote
 
+import com.elgendy.cryptocurrencyapp.data.remote.dto.CoinDetailsDto
 import com.elgendy.cryptocurrencyapp.data.remote.dto.CoinDto
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -9,5 +10,5 @@ interface CoinPaprikaApi {
     suspend fun getCoins(): List<CoinDto>
 
     @GET("/v1/coins/{coinId}")
-    suspend fun getCoinById(@Path ("coinId") coinId: String): CoinDto
+    suspend fun getCoinById(@Path("coinId") coinId: String): CoinDetailsDto
 }

@@ -1,6 +1,7 @@
 package com.elgendy.cryptocurrencyapp.data.remote.dto
 
 
+import com.elgendy.cryptocurrencyapp.domain.model.CoinDetails
 import com.google.gson.annotations.SerializedName
 
 data class CoinDetailsDto(
@@ -47,9 +48,23 @@ data class CoinDetailsDto(
     @SerializedName("tags")
     val tags: List<Tag>,
     @SerializedName("team")
-    val team: List<Team>,
+    val team: List<TeamMember>,
     @SerializedName("type")
     val type: String,
     @SerializedName("whitepaper")
     val whitepaper: Whitepaper
 )
+
+
+fun CoinDetailsDto.toCoinDetails(): CoinDetails {
+    return CoinDetails(
+        coinId = id,
+        name = name,
+        description = description,
+        symbol = symbol,
+        rank = rank,
+        isActive = isActive,
+        tags = tags.map { it.name },
+        teams = team
+    )
+}
